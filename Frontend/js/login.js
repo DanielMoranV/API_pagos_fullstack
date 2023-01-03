@@ -49,7 +49,7 @@ async function Login(user){
                 })
                 
             }else{
-                window.location.href="index1.html"
+                window.location.href="home.html"
             }
             localStorage.setItem("token.users",JSON.stringify(token));
         } catch (error) {

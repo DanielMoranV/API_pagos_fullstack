@@ -52,7 +52,7 @@ class LoginView(APIView):
         if user is not None:
             tokens = create_jwt_pair_for_user(user)
             idUser = User.objects.get(email=email)
-            response = {"message": "Logeado correctamente", "id": idUser.id ,"tokens": tokens}
+            response = {"message": "Logeado correctamente", "username": idUser.username ,"tokens": tokens}
 
             return Response(data=response, status=status.HTTP_200_OK)
 

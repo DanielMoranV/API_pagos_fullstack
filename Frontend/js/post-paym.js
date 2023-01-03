@@ -63,3 +63,7 @@ async function acceptData(){
         }
     })
 }
+
+getServicios(){
+  
+}

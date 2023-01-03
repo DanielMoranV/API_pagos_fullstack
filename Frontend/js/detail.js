@@ -17,6 +17,7 @@ async function getTask3() {
       }
       });
     const data = await response.json();
+    console.log(data)
     id ? renderTodo(data) : renderTasks(data);
   } catch (error) {
     console.log(error);
