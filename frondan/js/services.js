@@ -1,9 +1,10 @@
 const token = JSON.parse(localStorage.getItem("token.users")) ?? [];
+let user = token[1]['username']
 
 const main = document.querySelector(".row");
-const body = document.querySelector(".body");
+const detalle = document.querySelector(".detalle");
 
-async function getTask3() {
+async function getServices() {
   const id = new URLSearchParams(window.location.search).get("id");
   const extra = id ? `${id}/` : "";
 
@@ -17,13 +18,13 @@ async function getTask3() {
       }
       });
     const data = await response.json();
-    id ? renderTodo(data) : renderTasks(data);
+    id ? renderServicio(data) : renderServicios(data);
   } catch (error) {
     console.log(error);
   }
 }
 
-function renderTasks(data) {
+function renderServicios(data) {
   main.innerHTML = "";
  
   data.results.forEach((task) => {
@@ -43,7 +44,7 @@ function renderTasks(data) {
           <img src="${logo}" width="310" height="163"/>
 
           <div class="mt-2">
-          <a href="./detail.html?id=${id}" class="btn btn-primary">Revisar</a>
+          <a href="services.html?id=${id}" class="btn btn-primary">Revisar</a>
           </div>
         </div>
       </div>
@@ -51,30 +52,34 @@ function renderTasks(data) {
   });
 }
 
-function renderTodo(data) {
+function renderServicio(data) {
+    console.log(detalle)
   const {name, description : bodyTodo, logo,  id} = data;
-  body.innerHTML = `
-  <div class="col-lg-8 mx-auto p-4 py-md-5">
-    <main>
-      <h1>Detalle</h1>
-      
-      <p class="fs-5 col-md-8">
-        Servicio: ${name}
-      </p>
-      <p class="fs-5 col-md-8" align="justify">
-        Descripción: <div class="mt-1"> ${bodyTodo} 
-      </p>
-      <img src="${logo}" width="310" height="163"/>
-    
-      <div class="mt-2">
-      <div class="mb-5">
-        <a href="/" class="btn btn-primary">Regresar</a>
-        <a href="./edit.html?id=${id}" class="btn btn-primary">Editar</a>
-        <button onclick="deleteTodo()" class="btn btn-danger">Eliminar</button>
-      </div>
-    </main>
-  </div>`;
+  detalle.innerHTML = `
+    <div class="card shadow">
+        <div class="col-8 mx-auto  pt-2">
+            <main>
+                <h1>Detalle</h1>
+                <p class="fs-5 col-md-6">
+                    Servicio: ${name}
+                </p>
+                <p class="fs-5 col-md-8" align="justify">
+                    Descripción:
+                </p>
+                <div class="mt-1"> ${bodyTodo} </div>
+                <img src="${logo}" width="310" height="163"/>
+                
+                <div class="mt-2">
+                    <div class="mb-5">
+                        <a href="services.html" class="btn btn-primary">Regresar</a>
+                        <a href="./edit.html?id=${id}" class="btn btn-primary">Editar</a>
+                        <button onclick="deleteTodo()" class="btn btn-danger">Eliminar</button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>`;
 }
 
 
-getTask3();
+getServices();
