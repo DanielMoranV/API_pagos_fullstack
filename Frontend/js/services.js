@@ -72,7 +72,7 @@ function renderServicio(data) {
                 <div class="mt-2">
                     <div class="mb-5">
                         <a href="services.html" class="btn btn-primary">Regresar</a>
-                        <a href="./edit.html?id=${id}" class="btn btn-primary">Editar</a>
+                        <a href="./edit.html?id=${id}" class="btn btn-warning">Editar</a>
                         <button onclick="deleteTodo()" class="btn btn-danger">Eliminar</button>
                     </div>
                 </div>
